@@ -1,46 +1,34 @@
-// Класс для прямоугольника
-public class Rectangle extends AbstractShape {
-
+// Задание 2
+public class Rectangle implements GeometricShape {
     private double width;
     private double height;
+    private String fillColor;
+    private String borderColor;
 
-    /**
-     * Конструктор для создания объекта Rectangle.
-     * @param width Ширина прямоугольника
-     * @param height Высота прямоугольника
-     */
     public Rectangle(double width, double height, String fillColor, String borderColor) {
-        super(fillColor, borderColor);
         this.width = width;
         this.height = height;
+        this.fillColor = fillColor;
+        this.borderColor = borderColor;
     }
 
     @Override
-    public double perimeter() {
-
+    public double calculatePerimeter() {
         return 2 * (width + height);
     }
 
     @Override
-    public double area() {
+    public double calculateArea() {
         return width * height;
-    }
-    /**
-     * Метод возвращает название фигуры
-     * @return Название фигуры
-     */
-    @Override
-    public String getShapeName() {
-        return "Прямоугольник";
     }
 
     @Override
-    public void showInfo() {
-        System.out.println("-----------------------\nХарактеристики фигуры:");
-        System.out.println(getShapeName());
-        System.out.println("Периметр: " + perimeter());
-        System.out.println("Площадь: " + area());
-        System.out.println("Цвет фона: " + fillColor);
-        System.out.println("Цвет границы: " + borderColor);
+    public String getFillColor() {
+        return fillColor;
+    }
+
+    @Override
+    public String getBorderColor() {
+        return borderColor;
     }
 }

@@ -1,29 +1,33 @@
+// Задание 1
 public class Bowl {
-    private int foodAmount;
+    private int food;
 
-    public Bowl(int foodAmount) {
-        this.foodAmount = foodAmount;
+    public Bowl(int initialFood) {
+        this.food = Math.max(initialFood, 0);
     }
 
-    public int getFood(int countFood) {
-        if (this.foodAmount >= countFood) {
-            this.foodAmount -= countFood;
-            return countFood;
-        } else {
-            this.foodAmount = 0;
-            return 0;
+    public boolean takeFood(int amount) {
+        if (amount <= 0) {
+            System.out.println("Количество еды должно быть положительным!");
+            return false;
         }
+        if (food >= amount) {
+            food -= amount;
+            return true;
+        }
+        return false;
     }
 
     public void addFood(int amount) {
         if (amount > 0) {
-            this.foodAmount += amount;
-            System.out.println("Докинули еды " + amount);
+            food += amount;
+            System.out.println("Добавлено " + amount + " еды. Теперь в миске: " + food);
+        } else {
+            System.out.println("Нельзя добавить отрицательное количество еды!");
         }
-
     }
 
-    public int FoodAmount() {
-        return this.foodAmount;
+    public int getFood() {
+        return food;
     }
 }

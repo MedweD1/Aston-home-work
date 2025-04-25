@@ -1,48 +1,77 @@
+import java.util.ArrayList;
+// Задание 1-2
 public class Main {
-    public Main() {
-    }
-
     public static void main(String[] args) {
-        Dog dogSharik = new Dog("Шарик");
-        Cat catKorjik = new Cat("Кот Коржик");
-        int minValue = 1;
-        int maxValue = 240;
-        int randomValue = minValue + (int)(Math.random() * (double)(maxValue - minValue + 1));
-        dogSharik.run(randomValue);
-        dogSharik.swim(8);
-        catKorjik.run(randomValue);
-        catKorjik.swim(randomValue);
-        System.out.println("Количество созданных типов животных: " + Animal.count);
-        System.out.println("Количество созданных кошек: " + Cat.getCatCount());
-        System.out.println("Количество созданных собак: " + Dog.getDogCount());
-        System.out.println("----------------------");
-        Cat[] cats = new Cat[5];
+        // Задача 1.
+        Dog dog1 = new Dog("Рыжик");
+        Dog dog2 = new Dog("Котофей");
+        Cat cat1 = new Cat("Серый");
+        Cat cat2 = new Cat("Малыш");
+        Cat cat3 = new Cat("Туман");
 
-        for(int i = 0; i < cats.length; ++i) {
-            cats[i] = new Cat("Кот № " + (i + 1));
+        // Проверка действий
+        System.out.println("\nПроверка ограничений бега");
+        dog1.run(250);
+        dog2.run(700);
+        cat1.run(100);
+        cat2.run(350);
+        cat3.run(-50);
+
+        System.out.println("\nПроверка ограничений плавания");
+        dog1.swim(3);
+        dog2.swim(11);
+        cat1.swim(0);
+        dog1.swim(-5);
+
+        // Миска
+        System.out.println("\nКормление котов:");
+        Bowl bowl = new Bowl(13);
+        ArrayList<Cat> cats = new ArrayList<>();
+        cats.add(cat1);
+        cats.add(cat2);
+        cats.add(cat3);
+
+        System.out.println("\nПервое кормление:");
+        for (Cat cat : cats) {
+            cat.eat(bowl);
         }
 
-        Bowl bowl = new Bowl(35);
+        System.out.println("\nДобавление еды");
+        bowl.addFood(20);
+        bowl.addFood(-5);
 
-        for(int i = 0; i < cats.length; ++i) {
-            int foodTaken = bowl.getFood(10);
-            cats[i].eat(foodTaken);
-            if (i < cats.length - 1) {
-                System.out.print("\nОсталось в миске " + bowl.FoodAmount() + " --> ");
+        System.out.println("\nВторое кормление:");
+        for (Cat cat : cats) {
+            if (!cat.isFull()) {
+                cat.eat(bowl);
             }
         }
 
-        for(Cat cat : cats) {
-            if (cat.fullness) {
-                System.out.println(cat.name + " сытый.");
-            } else {
-                System.out.println(cat.name + " голодный.");
-            }
+        // Сытость
+        System.out.println("\nПроверка сытости:");
+        for (Cat cat : cats) {
+            System.out.println(cat.name + ": " + (cat.isFull() ? "сыт" : "голоден"));
         }
 
-        catKorjik.eat(bowl.getFood(10));
-        System.out.println("Осталось в миске " + bowl.FoodAmount());
-        bowl.addFood(10);
-        catKorjik.eat(bowl.getFood(10));
+        // Количество животных
+        System.out.println("Всего животных: " + Animals.getTotalCount());
+        System.out.println("Собак: " + Dog.getDogCount());
+        System.out.println("Котов: " + Cat.getCatCount());
+        System.out.println("Остаток еды в миске: " + bowl.getFood());
+
+
+        // Задача 2.
+        GeometricShape circle = new Circle(2.5, "Жёлтый", "Фиолетовый");
+        GeometricShape rectangle = new Rectangle(9, 4, "Красный", "Белый");
+        GeometricShape triangle = new Triangle(3, 4, 5, "Синий", "Чёрный");
+
+        System.out.println("\nКруг");
+        circle.printInfo();
+
+        System.out.println("\nПрямоугольник");
+        rectangle.printInfo();
+
+        System.out.println("\nТреугольник");
+        triangle.printInfo();
     }
 }

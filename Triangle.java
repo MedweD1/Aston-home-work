@@ -1,48 +1,37 @@
-// Класс для треугольника
-public class Triangle extends AbstractShape {
-    private double side1;
-    private double side2;
-    private double side3;
+// Задание 2
+public class Triangle implements GeometricShape {
+    private final double sideA;
+    private final double sideB;
+    private final double sideC;
+    private final String fillColor;
+    private final String borderColor;
 
-    /**
-     * Конструктор для создания объекта Triangle.
-     * @param side1 Длина первой стороны треугольника
-     * @param side2 Длина второй стороны треугольника
-     * @param side3 Длина третьей стороны треугольника
-     */
-    public Triangle(double side1, double side2, double side3, String fillColor, String borderColor) {
-        super(fillColor, borderColor);
-        this.side1 = side1;
-        this.side2 = side2;
-        this.side3 = side3;
+    public Triangle(double sideA, double sideB, double sideC, String fillColor, String borderColor) {
+        this.sideA = sideA;
+        this.sideB = sideB;
+        this.sideC = sideC;
+        this.fillColor = fillColor;
+        this.borderColor = borderColor;
     }
 
     @Override
-    public double perimeter() {
-        return side1 + side2 + side3;
+    public double calculateArea() {
+        double p = calculatePerimeter() / 2;
+        return Math.sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
     }
 
     @Override
-    public double area() {
-        double s = 0.5 * (side1 + side2 + side3);
-        return Math.sqrt(s * (s - side1) * (s - side2) * (s - side3));
-    }
-    /**
-     * Метод возвращает название фигуры
-     * @return Название фигуры
-     */
-    @Override
-    public String getShapeName() {
-        return "Треугольник";
+    public double calculatePerimeter() {
+        return sideA + sideB + sideC;
     }
 
     @Override
-    public void showInfo() {
-        System.out.println("-----------------------\nХарактеристики фигуры:");
-        System.out.println(getShapeName());
-        System.out.println("Периметр: " + perimeter());
-        System.out.println("Площадь: " + area());
-        System.out.println("Цвет фона: " + fillColor);
-        System.out.println("Цвет границы: " + borderColor);
+    public String getFillColor() {
+        return fillColor;
+    }
+
+    @Override
+    public String getBorderColor() {
+        return borderColor;
     }
 }

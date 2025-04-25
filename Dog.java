@@ -1,29 +1,39 @@
-public class Dog extends Animal {
-    int MAX_RUN_DISTANCE = 400;
-    int MAX_SWIM_DISTANCE = 10;
+// Задание 1
+public class Dog extends Animals {
     private static int dogCount = 0;
+    private final int MAX_RUN = 500;
+    private final int MAX_SWIM = 10;
 
     public Dog(String name) {
         super(name);
-        ++dogCount;
+        dogCount++;
     }
 
-    public void run(int lenght) {
-        if (lenght >= this.MAX_RUN_DISTANCE) {
-            System.out.println(this.name + " не может пробежать " + lenght + " м.");
-        } else {
-            System.out.println(this.name + " пробежал " + lenght + " м.");
+    @Override
+    public void run(int distance) {
+        if (distance <= 0) {
+            System.out.println("Расстояние не может быть отрицательным!");
+            return;
         }
 
+        if (distance <= MAX_RUN) {
+            System.out.println(name + " пробежал " + distance + " м.");
+        } else {
+            System.out.println(name + " не может пробежать " + distance + " м.");
+        }
     }
 
-    public void swim(int lenght) {
-        if (lenght >= this.MAX_SWIM_DISTANCE) {
-            System.out.println(this.name + " не может проплыть " + lenght + " м.");
-        } else {
-            System.out.println("И еще " + this.name + "  проплыл " + lenght + " м.  Какой он молодец");
+    @Override
+    public void swim(int distance) {
+        if (distance <= 0) {
+            System.out.println("Расстояние не может быть отрицательным!");
+            return;
         }
-
+        if (distance <= MAX_SWIM) {
+            System.out.println(name + " проплыл " + distance + " м.");
+        } else {
+            System.out.println(name + " не может проплыть " + distance + " м.");
+        }
     }
 
     public static int getDogCount() {
