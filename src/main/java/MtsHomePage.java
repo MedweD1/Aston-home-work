@@ -1,4 +1,4 @@
-package test.java.lesson_16;
+package test.java;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
