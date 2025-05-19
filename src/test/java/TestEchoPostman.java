@@ -1,9 +1,10 @@
-package Lesson_17;
+package test.java;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.*;
@@ -42,8 +43,6 @@ public class TestEchoPostman {
                 .assertThat().statusCode(200)
                 .and().body("data", is(TEST_DATASTRING));
     }
-
-
 
     @Test
     @DisplayName("POST Form Data")
@@ -121,7 +120,7 @@ public class TestEchoPostman {
                 .body("headers.content-type", equalTo("text/plain; charset=ISO-8859-1"))
                 .body("headers.accept", equalTo("*/*"))
                 .body("headers.accept-encoding", equalTo("gzip,deflate"))
-                .body("headers.postman-token",not(""))
+                .body("headers.postman-token", not(""))
                 .body("json", equalTo(null))
                 .body("url", equalTo("https://postman-echo.com/delete"));
     }
@@ -148,7 +147,7 @@ public class TestEchoPostman {
                 .body("headers.content-type", equalTo("text/plain; charset=ISO-8859-1"))
                 .body("headers.accept", equalTo("*/*"))
                 .body("headers.accept-encoding", equalTo("gzip,deflate"))
-                .body("headers.postman-token",not(""))
+                .body("headers.postman-token", not(""))
                 .body("json", equalTo(null))
                 .body("url", equalTo("https://postman-echo.com/put"));
     }
@@ -175,7 +174,7 @@ public class TestEchoPostman {
                 .body("headers.content-type", equalTo("text/plain; charset=ISO-8859-1"))
                 .body("headers.accept", equalTo("*/*"))
                 .body("headers.accept-encoding", equalTo("gzip,deflate"))
-                .body("headers.postman-token",not(""))
+                .body("headers.postman-token", not(""))
                 .body("json", equalTo(null))
                 .body("url", equalTo("https://postman-echo.com/patch"));
     }
